@@ -19,7 +19,7 @@ const birthday = () => {
   let staffDetails = '';
   collegeStaff.forEach((staff) => {
     if (staff.DOB.substring(3, 5) === mm && staff.DOB.substring(0, 2) === dd) {
-      staffDetails += `Name: ${staff.Name}\nJob Role: ${staff.JobRole}\nCollege: ${staff.institution}\nBranch: ${staff.department}\nContact Number: ${staff.MobileNumber}\n\n\n`;
+      staffDetails += `Name: ${staff.Name}\nJob Role: ${staff.JobRole}\nCollege: ${staff.institution}\nBranch: ${staff.department}\nContact Number: ${staff.MobileNumber}\n\n`;
     }
   });
   return staffDetails;
@@ -48,14 +48,13 @@ const getDate = () => {
 
   return `${dd} - ${monthNames[today.getMonth()]} - ${today.getFullYear()}`;
 };
-
+// amitajajoo@gmail.com
 let mailOptions = {
   from: process.env.EMAIL,
   to: 'Suryanshsingh7058@outlook.com',
-  subject: "Email from Suryansh's Mail App ",
-  text: `Staff With Birthday on ${getDate()} :\n\n\n${birthday()}`,
+  subject: `Staff With Birthday on ${getDate()}`,
+  text: birthday(),
 };
-
 
 cron.schedule('0 0 0 * * *', () => {
   transporter.sendMail(mailOptions, function (error, info) {
@@ -66,4 +65,3 @@ cron.schedule('0 0 0 * * *', () => {
     }
   });
 });
-
